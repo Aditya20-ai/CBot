@@ -89,8 +89,19 @@ void on_message(struct discord *client, const struct discord_message *this) {
     }
 };
 
-int main(void) {    
-    struct discord *client = discord_init("MTA0OTE5ODQ5NDA2NzQ2MjIzNQ.GVBNLY.spu9UthpKauTIvHp8hKMlEwVa-4pVMFynraMEY");
+
+int main(int argc, char *argv[]) {
+    
+    const char *config_file;
+    if (argc > 1) {
+        config_file = argv[1];
+    }
+    else {
+        config_file = "./config.json";
+    }
+    ccord_global_init();
+    struct discord *client = discord_config_init(config_file);
+    assert (NULL != client && "Failed to initialize discord client");
     discord_add_intents(client, DISCORD_GATEWAY_GUILD_MESSAGES);
     discord_add_intents(client, DISCORD_GATEWAY_MESSAGE_CONTENT);
     discord_set_on_ready(client, &on_ready);
