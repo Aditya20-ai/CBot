@@ -3,6 +3,7 @@
         "discord.h": "c",
         "log.h": "c",
         "string.h": "c",
-        "config.example.json": "jsonc"
+        "config.example.json": "jsonc",
+        "assert.h": "c"
     }
 }

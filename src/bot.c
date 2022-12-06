@@ -1,7 +1,7 @@
 #include <string.h>
 #include <concord/discord.h>
 #include <concord/log.h>
-
+#include <assert.h>
 
 void create_commands(struct discord *client, const struct discord_ready *bot) {
   struct discord_create_guild_application_command params = { .name = "ping" };
@@ -15,29 +15,6 @@ void on_ready(struct discord *client, const struct discord_ready *event) {
    // discord_create_guild_application_command(client, event->application->id, 746437092774772737, &params, NULL);
 }
 
-
-/*
-void show_buttons(struct discord *client, const struct discord_user *user, const struct discord_message *msg) {
-    struct discord_create_interaction_response params = {
-        .type = DISCORD_INTERACTION_RESPONSE_TYPE_CHANNEL_MESSAGE_WITH_SOURCE,
-        .data = {
-            .content = "This is a test",
-            .flags = DISCORD_MESSAGE_FLAG_EPHEMERAL,
-            .components = calloc(1, sizeof(*params.data.components)),
-            .components[0] = calloc(1, sizeof(*params.data.components[0])),
-            .components[0]->type = DISCORD_COMPONENT_ACTION_ROW,
-            .components[0]->components = calloc(1, sizeof(*params.data.components[0]->components)),
-            .components[0]->components[0] = calloc(1, sizeof(*params.data.components[0]->components[0])),
-            .components[0]->components[0]->type = DISCORD_COMPONENT_BUTTON,
-            .components[0]->components[0]->label = "Click me!",
-            .components[0]->components[0]->style = DISCORD_COMPONENT_BUTTON_PRIMARY,
-            .components[0]->components[0]->custom_id = "click_one"
-        }
-    };
-    discord_create_interaction_response(client, msg->interaction->id, msg->interaction->token, &params, NULL);
-    discord_create_interaction_response_params_cleanup(&params);
-}
-*/
 
 void on_interaction(struct discord *client, const struct discord_interaction *event) {
     log_info("Received interaction %s from %s#%s", event->data->name, event->member->user->username, event->member->user->discriminator);
