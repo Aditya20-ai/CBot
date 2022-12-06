@@ -2,6 +2,7 @@
 #include <concord/discord.h>
 #include <concord/log.h>
 #include <assert.h>
+#include "commands/ping.c"
 
 void create_commands(struct discord *client, const struct discord_ready *bot) {
   struct discord_create_guild_application_command params = { .name = "ping" };
@@ -51,12 +52,6 @@ void on_message(struct discord *client, const struct discord_message *this) {
     if (this->author->bot) {
         return; /* ignore other bots */
     } 
-    if (strcmp(this -> content, "!!ping") == 0) {
-        struct discord_create_message params = {
-            .content = "pong"
-        };
-        discord_create_message(client, this->channel_id, &params, NULL);
-    }
     if (strcmp(this -> content, "!!whoami") == 0 ) {
         snprintf(message, sizeof(message), "You are %s#%s", this->author->username, this->author->discriminator);
         struct discord_create_message params = {
@@ -65,7 +60,6 @@ void on_message(struct discord *client, const struct discord_message *this) {
         discord_create_message(client, this->channel_id, &params, NULL);
     }
 };
-
 
 int main(int argc, char *argv[]) {
     
@@ -82,8 +76,8 @@ int main(int argc, char *argv[]) {
     discord_add_intents(client, DISCORD_GATEWAY_GUILD_MESSAGES);
     discord_add_intents(client, DISCORD_GATEWAY_MESSAGE_CONTENT);
     discord_set_on_ready(client, &on_ready);
-    // If the client is ready, log a message using the log.h library
     discord_set_on_interaction_create(client, &on_interaction);
     discord_set_on_message_create(client, &on_message);
+    discord_set_on_command(client, "ping", ping);
     discord_run(client);
 }
