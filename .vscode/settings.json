@@ -4,6 +4,7 @@
         "log.h": "c",
         "string.h": "c",
         "config.example.json": "jsonc",
-        "assert.h": "c"
+        "assert.h": "c",
+        "time.h": "c"
     }
 }
