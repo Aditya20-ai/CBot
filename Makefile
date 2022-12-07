@@ -3,9 +3,4 @@ build:
 
 clean:
 	rm -rf builds/bot
-
-
-
-
-	
 	
