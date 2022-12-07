@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <string.h>
 #include "commands/ping.c"
-#include "commands/debug.c"
+//#include "commands/debug.c"
 
 void create_commands(struct discord *client, const struct discord_ready *bot) {
   struct discord_create_guild_application_command params = { .name = "ping" };
@@ -80,6 +80,6 @@ int main(int argc, char *argv[]) {
     discord_set_on_interaction_create(client, &on_interaction);
     discord_set_on_message_create(client, &on_message);
     discord_set_on_command(client, "ping", ping);
-    discord_set_on_command(client, "debug", debug);
+    //discord_set_on_command(client, "debug", debug);
     discord_run(client);
 }
