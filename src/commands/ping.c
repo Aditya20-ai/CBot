@@ -5,6 +5,9 @@
 #include <time.h>
 #include "../utils/timestamp.c"
 
+// Eventually push this into an embed and display it properly
+// Use .done and .fail instead of .sync 
+// .done and .fail are async functions while .sync is a sync function which is far less efficient and can cause issues when multiple people use the command at the same time
 
 void ping(struct discord *client, const struct discord_message *this) {
     char ping_str[DISCORD_MAX_MESSAGE_LEN];
