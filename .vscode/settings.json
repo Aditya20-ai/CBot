@@ -5,6 +5,14 @@
         "string.h": "c",
         "config.example.json": "jsonc",
         "assert.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "timestamp.h": "c",
+        "ping.h": "c",
+        "stdio.h": "c",
+        "stdbool.h": "c",
+        "error.h": "c",
+        "inttypes.h": "c",
+        "audit_log.h": "c",
+        "auto_moderation.h": "c"
     }
 }

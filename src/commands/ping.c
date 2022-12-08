@@ -3,7 +3,8 @@
 #include <assert.h>
 #include <string.h>
 #include <time.h>
-#include "../utils/timestamp.c"
+#include "../headers/timestamp.h"
+#include "../headers/ping.h"
 
 // Eventually push this into an embed and display it properly
 // Use .done and .fail instead of .sync 

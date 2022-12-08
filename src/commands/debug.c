@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <string.h>
 #include <time.h>
-#include "../utils/timestamp.c"
+//#include "../utils/timestamp.c"
 
 void debug(struct discord *client, const struct discord_message *this) {
     char ping_str[DISCORD_MAX_MESSAGE_LEN];

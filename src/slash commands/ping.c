@@ -1,7 +1,9 @@
 #include <concord/discord.h>
 #include <concord/log.h>
 #include <time.h>
-#include "../utils/timestamp.c"
+#include <string.h>
+#include "../headers/timestamp.h"
+#include "../headers/ping.h"
 
 void slashy_ping(struct discord *client, const struct discord_interaction *event) {
     if (event->type != DISCORD_INTERACTION_APPLICATION_COMMAND)
@@ -18,5 +20,5 @@ void slashy_ping(struct discord *client, const struct discord_interaction *event
         };
         discord_create_interaction_response(client, event->id, event->token, &params, NULL);
     }
-    
+
 }

@@ -2,8 +2,9 @@
 #include <concord/log.h>
 #include <assert.h>
 #include <string.h>
-#include "commands/ping.c"
-#include "slash commands/ping.c"
+#include "headers/ping.h"
+#include "headers/timestamp.h"
+#include "headers/ping.h"
 //#include "commands/debug.c"
 
 void create_commands(struct discord *client, const struct discord_ready *bot) {
