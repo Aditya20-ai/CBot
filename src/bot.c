@@ -2,9 +2,9 @@
 #include <concord/log.h>
 #include <assert.h>
 #include <string.h>
-#include "headers/ping.h"
+#include "headers/apiPing.h"
 #include "headers/timestamp.h"
-#include "headers/ping.h"
+#include "headers/slashy_ping.h"
 //#include "commands/debug.c"
 
 void create_commands(struct discord *client, const struct discord_ready *bot) {
@@ -19,32 +19,6 @@ void on_ready(struct discord *client, const struct discord_ready *event) {
    // discord_create_guild_application_command(client, event->application->id, 746437092774772737, &params, NULL);
 }
 
-
-void on_interaction(struct discord *client, const struct discord_interaction *event) {
-    log_info("Received interaction %s from %s#%s", event->data->name, event->member->user->username, event->member->user->discriminator);
-    if (event->type != DISCORD_INTERACTION_APPLICATION_COMMAND)
-        return; /* return if interaction isn't a slash command */
- 
-    if (strcmp(event->data->name, "ping") == 0) {
-          struct discord_interaction_response params = {
-                .type = DISCORD_INTERACTION_CHANNEL_MESSAGE_WITH_SOURCE,
-                .data = &(struct discord_interaction_callback_data){
-                      .content = "pong"
-                }
-          };
-    discord_create_interaction_response(client, event->id, event->token, &params, NULL);
-    }
-    if (strcmp(event->data->name, "test") == 0) {
-            struct discord_interaction_response params = {
-                    .type = DISCORD_INTERACTION_CHANNEL_MESSAGE_WITH_SOURCE,
-                    .data = & (struct discord_interaction_callback_data) {
-                        .content = "This is a test command",
-                        .flags = 64
-                    }
-            };
-        discord_create_interaction_response(client, event->id, event->token, &params, NULL);
-        };
-    };
 
 
 
@@ -81,7 +55,8 @@ int main(int argc, char *argv[]) {
     discord_set_on_ready(client, &on_ready);
     discord_set_on_interaction_create(client, slashy_ping);
     discord_set_on_message_create(client, &on_message);
-    discord_set_on_command(client, "ping", ping);
+    discord_set_on_command(client, "ping", apiPing);
     //discord_set_on_command(client, "debug", debug);
     discord_run(client);
+    return 0;
 }

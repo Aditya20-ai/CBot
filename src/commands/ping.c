@@ -4,13 +4,13 @@
 #include <string.h>
 #include <time.h>
 #include "../headers/timestamp.h"
-#include "../headers/ping.h"
+#include "../headers/apiPing.h"
 
 // Eventually push this into an embed and display it properly
 // Use .done and .fail instead of .sync 
 // .done and .fail are async functions while .sync is a sync function which is far less efficient and can cause issues when multiple people use the command at the same time
 
-void ping(struct discord *client, const struct discord_message *this) {
+void apiPing(struct discord *client, const struct discord_message *this) {
     char ping_str[DISCORD_MAX_MESSAGE_LEN];
     char gateway_ping_str[DISCORD_MAX_MESSAGE_LEN];
     struct discord_message msg = { 0 };

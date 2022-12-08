@@ -3,14 +3,14 @@
 #include <time.h>
 #include <string.h>
 #include "../headers/timestamp.h"
-#include "../headers/ping.h"
+#include "../headers/slashy_ping.h"
 
 void slashy_ping(struct discord *client, const struct discord_interaction *event) {
     if (event->type != DISCORD_INTERACTION_APPLICATION_COMMAND)
         return; /* return if interaction isn't a slash command */
-    int ping = discord_get_ping(client);
+    int discord_ping = discord_get_ping(client);
     char message[DISCORD_MAX_MESSAGE_LEN];
-    snprintf(message, sizeof(message), "The ping of the bot is %dms", ping);
+    snprintf(message, sizeof(message), "The ping of the bot is %dms", discord_ping);
     if (strcmp(event->data->name, "ping") == 0) {
         struct discord_interaction_response params = {
             .type = DISCORD_INTERACTION_CHANNEL_MESSAGE_WITH_SOURCE,

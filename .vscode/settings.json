@@ -13,6 +13,8 @@
         "error.h": "c",
         "inttypes.h": "c",
         "audit_log.h": "c",
-        "auto_moderation.h": "c"
+        "auto_moderation.h": "c",
+        "slashy_ping.h": "c",
+        "apiping.h": "c"
     }
 }
