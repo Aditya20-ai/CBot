@@ -1,7 +1,7 @@
 CC = gcc
 OUTPUT = builds/bot
 CFLAGS = -Wall -c 
-LFLAGS = -Wall -pthread -ldiscord -lcurl
+LFLAGS = -Wall -DCCORD_SIGINTCATCH -pthread -ldiscord -lcurl
 INCLUDE = -I.
 OBJDIR = objects
 OBJECTS = $(OBJDIR)/ping.o $(OBJDIR)/timestamp.o $(OBJDIR)/slashy_ping.o

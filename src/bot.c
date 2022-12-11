@@ -8,7 +8,6 @@
 
 //#include "commands/debug.c"
 struct discord *client;
-// void signal_handler(int _sig_num)
 void create_commands(struct discord *client, const struct discord_ready *bot) {
   struct discord_create_guild_application_command params = { .name = "ping" };
   discord_create_guild_application_command(client, bot->application->id, 746437092774772737 ,&params, NULL);
@@ -22,7 +21,10 @@ void on_ready(struct discord *client, const struct discord_ready *event) {
 }
 
 
-
+static void signal_handler(int _sig_num) {
+    discord_shutdown(client);
+    return;
+}
 
 
 void on_message(struct discord *client, const struct discord_message *this) {
@@ -59,7 +61,12 @@ int main(int argc, char *argv[]) {
     discord_set_on_message_create(client, &on_message);
     discord_set_on_command(client, "ping", apiPing);
     //discord_set_on_command(client, "debug", debug);
+    
+    /* Signal handler */
+    signal(SIGINT, signal_handler);
     discord_run(client);
+
+    /* Cleanup the connection after exit */
     discord_cleanup(client);
     ccord_global_cleanup();
     return 0;
